@@ -1,0 +1,28 @@
+@media (max-width: 800px){
+  #saveblock1{
+    display: none !important;
+  }
+
+}
+
+@media (min-width: 801px){
+  #saveblock2{
+    display: none !important;
+  }
+}
+
+
+
+label{
+  margin-bottom: 0.5em;
+}
+
+.form-control:focus, textarea:focus, select:focus {
+  border: 1px solid #4A9DEC !important;
+  box-shadow: 0px 0px 0px 3px #0007233d !important;
+  background-color: white !important;
+}
+
+select{
+  height: 2.3em !important;
+}

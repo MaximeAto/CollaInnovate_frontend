@@ -1,0 +1,1416 @@
+<div
+  class="horizontal-layout horizontal-menu horizontal-menu-padding 2-columns bg-light-subtle"
+>
+  <div class="sticky-top">
+    <app-header></app-header>
+  </div>
+
+  <!-- BEGIN: Content-->
+  <div class="app-content container center-layout mt-2">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12 mb-2">
+          <h1 style="color: #000723" class="content-header-title mb-0">
+            Submit solution for/
+          </h1>
+          <h5 class="pt-2" style="color: red;">{{problem.title}}</h5>
+        </div>
+        <div class="content-header-right col-md-6 col-12">
+          <div
+            class="btn-group float-md-right"
+            role="group"
+            aria-label="Button group with nested dropdown"
+          >
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+              <a class="dropdown-item" href="card-bootstrap.html">Cards</a
+              ><a class="dropdown-item" href="component-buttons-extended.html"
+                >Buttons</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- Basic form layout section start -->
+        <section id="basic-form-layouts">
+          <div class="match-height">
+            <form [formGroup]="formulaire" (ngSubmit)="save()" class="form row">
+              <div>
+                <div class="card">
+                  <div class="card-body">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="solutionTitle">Solution title</label>
+                            <input
+                              type="text"
+                              id="solutionTitle"
+                              class="form-control"
+                              placeholder="Solution title"
+                              formControlName="solutionTitle"
+                              [ngClass]="{
+                                'is-invalid':
+                                  erreurLogin &&
+                                  formulaire.controls['solutionTitle'].invalid
+                              }"
+                              required
+                            />
+                            <div
+                              *ngIf="
+                                formulaire.controls['solutionTitle'].invalid &&
+                                formulaire.controls['solutionTitle'].touched
+                              "
+                              class="text-danger"
+                            >
+                              Solution title is required
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="aboutSolution">About Solution</label>
+                        <p-editor
+                          formControlName="aboutSolution"
+                          [ngClass]="{
+                            'is-invalid':
+                              erreurLogin &&
+                              formulaire.controls['aboutSolution'].invalid
+                          }"
+                          [style]="{ height: '320px' }"
+                        ></p-editor>
+                        <div
+                          *ngIf="
+                            formulaire.controls['aboutSolution'].invalid &&
+                            formulaire.controls['aboutSolution'].touched
+                          "
+                          class="text-danger"
+                        >
+                          About Solution is required
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="productsOnOffer"
+                              >Products on offer</label
+                            >
+                            <textarea
+                              id="productsOnOffer"
+                              rows="5"
+                              class="form-control"
+                              placeholder="Add products on offer"
+                              formControlName="productsOnOffer"
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="servicesOnOffer"
+                              >Services on offer</label
+                            >
+                            <textarea
+                              id="servicesOnOffer"
+                              rows="5"
+                              class="form-control"
+                              placeholder="Add services on offer"
+                              formControlName="servicesOnOffer"
+                            ></textarea>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="customerExpectations"
+                          >Customer expectations</label
+                        >
+                        <textarea
+                          id="customerExpectations"
+                          rows="5"
+                          class="form-control"
+                          formControlName="customerExpectations"
+                          placeholder="Add customer expectations"
+                        ></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="companySales"
+                          >What does the company sell?</label
+                        >
+                        <textarea
+                          id="companySales"
+                          rows="5"
+                          class="form-control"
+                          placeholder="Add what does the company sell?"
+                          formControlName="companySales"
+                        ></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="companySales"
+                          >How the product or service is marketed ?</label
+                        >
+                        <textarea
+                          id="how_product_service_marketed"
+                          rows="5"
+                          class="form-control"
+                          placeholder="Tell how the product or service is marketed"
+                          formControlName="how_product_service_marketed"
+                        ></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="companySales"
+                          >How do you access customers?</label
+                        >
+                        <textarea
+                          id="customer_access_method"
+                          rows="5"
+                          class="form-control"
+                          placeholder="Tell how you access to customers"
+                          formControlName="customer_access_method"
+                        ></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <a
+                          style="text-decoration: underline; color: blue"
+                          (click)="showmore()"
+                          >{{ more }}</a
+                        >
+                      </div>
+                      <div *ngIf="lookmore">
+                        <h4 style="margin-bottom: 1em">About competitors</h4>
+                        <div formArrayName="competitors">
+                          <div
+                            *ngFor="
+                              let competitor of getCompetitorsFormArray()
+                                .controls;
+                              let i = index
+                            "
+                            [formGroupName]="i"
+                            class="form-group"
+                          >
+                            <p>>>>>>>>>>>>>></p>
+                            <input
+                              id="competitor"
+                              class="form-control"
+                              formControlName="name"
+                              placeholder="Name"
+                              style="margin-bottom: 1em"
+                            />
+                            <textarea
+                              rows="5"
+                              class="form-control"
+                              formControlName="strength"
+                              placeholder="Add strength"
+                              style="margin-bottom: 1em"
+                            ></textarea>
+                            <textarea
+                              rows="5"
+                              class="form-control"
+                              formControlName="weakness"
+                              placeholder="Add Weakness"
+                            ></textarea>
+                          </div>
+                          <button
+                            style="margin-bottom: 1em"
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="addCompetitor()"
+                          >
+                            <i
+                              class="fa-solid fa-plus"
+                              style="padding-right: 5px"
+                            ></i
+                            >Add another competitor
+                          </button>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">
+                          About distribution canals
+                        </h4>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="directsale"
+                            formControlName="directSales"
+                          />
+                          <label class="form-check-label" for="directsale">
+                            Direct sales
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="retailSales"
+                            formControlName="retailSales"
+                          />
+                          <label class="form-check-label" for="retailSales">
+                            Retail sales
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="wholesale"
+                            formControlName="wholesale"
+                          />
+                          <label class="form-check-label" for="retailSales">
+                            Wholesale
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="informalSales"
+                            formControlName="informalSales"
+                          />
+                          <label class="form-check-label" for="informalSales">
+                            Informal sales
+                          </label>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Promotional methods</h4>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="advertising"
+                            formControlName="advertising"
+                          />
+                          <label class="form-check-label" for="advertising">
+                            Advertising
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="directMarketing"
+                            formControlName="directMarketing"
+                          />
+                          <label class="form-check-label" for="directMarketing">
+                            Direct Marketing
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="salesPromotion"
+                            formControlName="salesPromotion"
+                          />
+                          <label class="form-check-label" for="salesPromotion">
+                            Sales Promotion
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="display"
+                            formControlName="display"
+                          />
+                          <label class="form-check-label" for="display">
+                            Display
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="wordOfMouth"
+                            formControlName="wordOfMouth"
+                          />
+                          <label class="form-check-label" for="wordOfMouth">
+                            Word of Mouth
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="tradeShow"
+                            formControlName="tradeShow"
+                          />
+                          <label class="form-check-label" for="tradeShow">
+                            Trade Show
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="mailOrder"
+                            formControlName="mailOrder"
+                          />
+                          <label class="form-check-label" for="mailOrder">
+                            Mail Order
+                          </label>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Human resources</h4>
+                        <div formArrayName="humans">
+                          <div
+                            *ngFor="
+                              let human of getHumanResourcesFormArray()
+                                .controls;
+                              let i = index
+                            "
+                            [formGroupName]="i"
+                            class="form-group"
+                          >
+                            <p>>>>>>>>>>>>>></p>
+                            <input
+                              id="human"
+                              class="form-control"
+                              formControlName="position"
+                              placeholder="Add position"
+                              style="margin-bottom: 1em"
+                            />
+                            <textarea
+                              rows="5"
+                              class="form-control"
+                              formControlName="task"
+                              placeholder=" Add task to be performed"
+                              style="margin-bottom: 1em"
+                            ></textarea>
+                            <textarea
+                              rows="5"
+                              class="form-control"
+                              formControlName="skills"
+                              placeholder="Add skills experience required"
+                              style="margin-bottom: 1em"
+                            ></textarea>
+                            <input
+                              id="profile"
+                              class="form-control"
+                              formControlName="profile"
+                              placeholder="Add ideal profile"
+                              style="margin-bottom: 1em"
+                            />
+                            <input
+                              type="number"
+                              id="salary"
+                              class="form-control"
+                              formControlName="salary"
+                              placeholder="Add monthly salary"
+                            />
+                          </div>
+                          <button
+                            style="margin-bottom: 1em"
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="addHuman()"
+                          >
+                            <i
+                              class="fa-solid fa-plus"
+                              style="padding-right: 5px"
+                            ></i
+                            >Add another human ressources
+                          </button>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Legal Form</h4>
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm1"
+                              formControlName="legalForm"
+                              value="Company"
+                            />
+                            <label class="form-check-label" for="legalForm1"
+                              >Company</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm2"
+                              formControlName="legalForm"
+                              value="SARL"
+                            />
+                            <label class="form-check-label" for="legalForm2"
+                              >SARL</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm3"
+                              formControlName="legalForm"
+                              value="SA"
+                            />
+                            <label class="form-check-label" for="legalForm3"
+                              >SA</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm4"
+                              formControlName="legalForm"
+                              value="Cooperative"
+                            />
+                            <label class="form-check-label" for="legalForm4"
+                              >Cooperative</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm5"
+                              formControlName="legalForm"
+                              value="Partnership"
+                            />
+                            <label class="form-check-label" for="legalForm5"
+                              >Partnership</label
+                            >
+                          </div>
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="legalForm"
+                              id="legalForm6"
+                              formControlName="legalForm"
+                              value="Other"
+                            />
+                            <label class="form-check-label" for="legalForm6"
+                              >Other</label
+                            >
+                          </div>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Required investment</h4>
+                        <div formGroupName="investment">
+                          <textarea
+                            rows="5"
+                            class="form-control"
+                            formControlName="needs"
+                            placeholder="Need to finance"
+                            style="margin-bottom: 1em"
+                          ></textarea>
+                          <textarea
+                            rows="5"
+                            class="form-control"
+                            formControlName="characteristics"
+                            placeholder="Investment characteristics"
+                            style="margin-bottom: 1em"
+                          ></textarea>
+                          <div formArrayName="suppliers">
+                            <h5 style="margin-bottom: 1em">Supplier(s)</h5>
+                            <div
+                              *ngFor="
+                                let supplier of getSuppliersFormArray()
+                                  .controls;
+                                let i = index
+                              "
+                              [formGroupName]="i"
+                              class="form-group"
+                            >
+                              <p>>>>>>>>>>>>>></p>
+                              <input
+                                id="supplier"
+                                class="form-control"
+                                formControlName="name"
+                                placeholder="Add name of supplier"
+                                style="margin-bottom: 1em"
+                              />
+                              <input
+                                id="amount"
+                                type="number"
+                                class="form-control"
+                                formControlName="amount"
+                                placeholder="Add amount of this supplier"
+                                style="margin-bottom: 1em"
+                              />
+                            </div>
+                            <button
+                              style="margin-bottom: 1em"
+                              type="button"
+                              class="btn btn-primary"
+                              (click)="addSupplier()"
+                            >
+                              <i
+                                class="fa-solid fa-plus"
+                                style="padding-right: 5px"
+                              ></i
+                              >Add another supplier
+                            </button>
+                          </div>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Variable Cost</h4>
+                        <div formArrayName="variablecosts">
+                          <div
+                            *ngFor="
+                              let variablecost of getVariableCostFormArray()
+                                .controls;
+                              let i = index
+                            "
+                            [formGroupName]="i"
+                            class="row"
+                          >
+                            <div class="col-md-6">
+                              <input
+                                type="text"
+                                id="variablename"
+                                class="form-control"
+                                placeholder="Add name of variable cost"
+                                style="margin-bottom: 0.4em"
+                                formControlName="variablename"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <input
+                                type="number"
+                                id="variableCost"
+                                class="form-control"
+                                placeholder="Add variable cost"
+                                formControlName="variableCost"
+                                style="margin-bottom: 0.4em"
+                              />
+                            </div>
+                          </div>
+
+                          <button
+                            style="margin-bottom: 1em; margin-top: 0.3em"
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="addVariablecost()"
+                          >
+                            <i
+                              class="fa-solid fa-plus"
+                              style="padding-right: 5px"
+                            ></i
+                            >Add another variable cost
+                          </button>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Fixed Cost</h4>
+                        <div formArrayName="fixedcosts">
+                          <div
+                            *ngFor="
+                              let fixedcost of getFixedCostFormArray().controls;
+                              let i = index
+                            "
+                            [formGroupName]="i"
+                            class="row"
+                          >
+                            <div class="col-md-6">
+                              <input
+                                type="text"
+                                id="fixedname"
+                                class="form-control"
+                                placeholder="Add name of fixed cost"
+                                style="margin-bottom: 0.4em"
+                                formControlName="fixedname"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <input
+                                type="number"
+                                id="fixedCost"
+                                class="form-control"
+                                placeholder="Add fixed cost"
+                                style="margin-bottom: 0.4em"
+                                formControlName="fixedCost"
+                              />
+                            </div>
+                          </div>
+
+                          <button
+                            style="margin-bottom: 1em; margin-top: 0.3em"
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="addFixedcost()"
+                          >
+                            <i
+                              class="fa-solid fa-plus"
+                              style="padding-right: 5px"
+                            ></i
+                            >Add another fixed cost
+                          </button>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Financial forecast</h4>
+                        <div formGroupName="financialforecast">
+                          <div class="form-group">
+                            <h5 style="margin-bottom: 1em">Quantity sold</h5>
+                            <input
+                              type="number"
+                              id="quantitysold"
+                              class="form-control"
+                              placeholder="Add quantity sold"
+                              formControlName="quantitysold"
+                            />
+                          </div>
+                          <div
+                            formGroupName="salesgenerated"
+                            class="form-group"
+                          >
+                            <h5 style="margin-bottom: 1em">
+                              Revenue Generated
+                            </h5>
+                            <input
+                              type="number"
+                              id="firstmonth"
+                              class="form-control"
+                              placeholder="Add for first month"
+                              formControlName="firstmonth"
+                              style="margin-bottom: 0.4em"
+                            />
+                            <input
+                              type="number"
+                              id="thirdmonth"
+                              class="form-control"
+                              placeholder="Add for third month"
+                              formControlName="thirdmonth"
+                              style="margin-bottom: 0.4em"
+                            />
+                            <input
+                              type="number"
+                              id="sixthmonth"
+                              class="form-control"
+                              placeholder="Add for sixth month"
+                              formControlName="sixthmonth"
+                              style="margin-bottom: 0.4em"
+                            />
+                            <input
+                              type="number"
+                              id="firstyear"
+                              class="form-control"
+                              placeholder="Add for  first year"
+                              formControlName="firstyear"
+                              style="margin-bottom: 0.4em"
+                            />
+                            <input
+                              type="number"
+                              id="thirdyear"
+                              class="form-control"
+                              placeholder="Add for third year"
+                              formControlName="thirdyear"
+                              style="margin-bottom: 0.4em"
+                            />
+                          </div>
+                          <div formArrayName="offers">
+                            <h5 style="margin-bottom: 1em">Offer(s)</h5>
+                            <div
+                              *ngFor="
+                                let offer of getOffersFormArray().controls;
+                                let i = index
+                              "
+                              [formGroupName]="i"
+                              class="form-group"
+                            >
+                              <input
+                                type="text"
+                                id="offername"
+                                class="form-control"
+                                placeholder="Add offer name"
+                                style="margin-bottom: 0.4em"
+                                formControlName="offername"
+                              />
+                              <input
+                                type="number"
+                                id="offerprice"
+                                class="form-control"
+                                placeholder="Add offer price"
+                                style="margin-bottom: 0.4em"
+                                formControlName="offerprice"
+                              />
+                            </div>
+                            <button
+                              style="margin-bottom: 1em; margin-top: 0.3em"
+                              type="button"
+                              class="btn btn-primary"
+                              (click)="addOffer()"
+                            >
+                              <i
+                                class="fa-solid fa-plus"
+                                style="padding-right: 5px"
+                              ></i
+                              >Add another offer
+                            </button>
+                          </div>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Cash flow plan</h4>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="cash"
+                            class="form-control"
+                            placeholder="Add the cash flow plan for first month"
+                            formControlName="cashflowfirstmonth"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="cash"
+                            class="form-control"
+                            placeholder="Add the cash flow plan for first month"
+                            formControlName="cashflowthirdmonth"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="cash"
+                            class="form-control"
+                            placeholder="Add the cash flow plan for sixth  month"
+                            formControlName="cashflowsixthmonth"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="cash"
+                            class="form-control"
+                            placeholder="Add the cash flow plan for first year"
+                            formControlName="cashflowfirstyear"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="cash"
+                            class="form-control"
+                            placeholder="Add the cash flow plan for third year"
+                            formControlName="cashflowthirdyear"
+                          />
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Financing Need</h4>
+                        <div class="form-group">
+                          <input
+                            type="number"
+                            id="financingNeed"
+                            class="form-control"
+                            placeholder="Add financing need "
+                            formControlName="financingNeed"
+                          />
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">Financing Phase</h4>
+                        <div class="form-group">
+                          <select
+                            class="form-control"
+                            id="financingPhase"
+                            formControlName="financingPhase"
+                          >
+                            <option value="" disabled selected>
+                              Select a financing phase
+                            </option>
+                            <option
+                              *ngFor="let f of financingPhase"
+                              [value]="f.name"
+                            >
+                              {{ f.name }}
+                            </option>
+                          </select>
+                        </div>
+
+                        <!-- Financing sources -->
+                        <h4 style="margin-bottom: 1em">Financing sources</h4>
+                        <div formGroupName="financingSource">
+                          <div formGroupName="equitycapital" class="form-group">
+                            <h5 style="margin-bottom: 1em">Equity capital</h5>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="privatesavings"
+                                formControlName="privatesavings"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="privatesavings"
+                              >
+                                Private savings
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="privatesphere"
+                                formControlName="privatesphere"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="privatesphere"
+                              >
+                                Private sphere
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="privateshareholders"
+                                formControlName="privateshareholders"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="privateshareholders"
+                              >
+                                Private Shareholders
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="startupsponsors"
+                                formControlName="startupsponsors"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="startupsponsors"
+                              >
+                                Startup Sponsors
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="businessagents"
+                                formControlName="businessagents"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="businessagents"
+                              >
+                                Business Agents
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="incubatorandbusinessincubator"
+                                formControlName="incubatorandbusinessincubator"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="incubatorandbusinessincubator"
+                              >
+                                Incubator and business incubator
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="mixedcapital"
+                                formControlName="mixedcapital"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="mixedcapital"
+                              >
+                                Mixed Capital
+                              </label>
+                            </div>
+                          </div>
+
+                          <div formGroupName="creditsource" class="form-group">
+                            <h5 style="margin-bottom: 1em">Credit Sources</h5>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="bankCredit"
+                                formControlName="bankCredit"
+                              />
+                              <label class="form-check-label" for="bankCredit">
+                                Bank Credit
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="startupLaunchCredit"
+                                formControlName="startupLaunchCredit"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="startupLaunchCredit"
+                              >
+                                Credit for startup launch
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="mezzanineFinancing"
+                                formControlName="mezzanineFinancing"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="mezzanineFinancing"
+                              >
+                                Mezzanine Financing
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="creditother"
+                                formControlName="other"
+                              />
+                              <label class="form-check-label" for="creditother">
+                                Other
+                              </label>
+                            </div>
+                          </div>
+
+                          <div
+                            formGroupName="publicSubsidyforBusinessCreation"
+                            class="form-group"
+                          >
+                            <h5 style="margin-bottom: 1em">
+                              Public Subsidy for Business Creation
+                            </h5>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="businessstartupprogram"
+                                formControlName="businessstartupprogram"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="businessstartupprogram"
+                              >
+                                Business start-up program
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="startupCompetition"
+                                formControlName="startupCompetition"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="startupCompetition"
+                              >
+                                Start-up competition
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="subsidyother"
+                                formControlName="other"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="subsidyother"
+                              >
+                                Other
+                              </label>
+                            </div>
+                          </div>
+
+                          <div
+                            formGroupName="crowdfundingSources"
+                            class="form-group"
+                          >
+                            <h5 style="margin-bottom: 1em">
+                              Crowdfunding Sources
+                            </h5>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="crowdfunding"
+                                formControlName="crowdfunding"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="crowdfunding"
+                              >
+                                Crowdfunding
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="crowdInvesting"
+                                formControlName="crowdInvesting"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="crowdInvesting"
+                              >
+                                Crowd Investing
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="crowdLending"
+                                formControlName="crowdLending"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="crowdLending"
+                              >
+                                Crowd Lending
+                              </label>
+                            </div>
+                            <div class="form-check">
+                              <input
+                                class="form-check-input"
+                                type="checkbox"
+                                value=""
+                                id="crowdfundother"
+                                formControlName="other"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="crowdfundother"
+                              >
+                                Other
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">
+                          Remuneration strategy for capital providers
+                        </h4>
+                        <div class="form-group">
+                          <h5 style="margin-bottom: 1em">
+                            Type of remuneration
+                          </h5>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="remunerationType"
+                              id="remunerationType1"
+                              formControlName="remunerationType"
+                              value="Selling company shares"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="remunerationType1"
+                              >Selling company shares
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="remunerationType"
+                              id="remunerationType2"
+                              formControlName="remunerationType"
+                              value="Setting up a compensation plan"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="remunerationType2"
+                              >Setting up a compensation plan
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="remunerationType"
+                              id="remunerationType3"
+                              formControlName="remunerationType"
+                              value="Repay your investment with interest"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="remunerationType3"
+                              >Repay your investment with interest
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="remunerationType"
+                              id="remunerationType4"
+                              formControlName="remunerationType"
+                              value="Pay a percentage of periodic profit"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="remunerationType4"
+                              >Pay a percentage of periodic profit
+                            </label>
+                          </div>
+                        </div>
+
+                        <h4 style="margin-bottom: 1em">
+                          Mobilized strategy pillar
+                        </h4>
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              id="pillar1"
+                              name="pillar"
+                              formControlName="pillar"
+                              value="Structural transformation of the economy"
+                            />
+                            <label class="form-check-label" for="pillar1"
+                              >Structural transformation of the economy
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              id="pillar2"
+                              name="pillar"
+                              formControlName="pillar"
+                              value="Capital development and well-being"
+                            />
+                            <label class="form-check-label" for="pillar2"
+                              >Capital development and well-being
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              id="pillar3"
+                              name="pillar"
+                              formControlName="pillar"
+                              value="Employment promotion and economic integration"
+                            />
+                            <label class="form-check-label" for="pillar3"
+                              >Employment promotion and economic integration
+                            </label>
+                          </div>
+
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              id="pillar4"
+                              name="pillar"
+                              formControlName="pillar"
+                              value="Governance, decentralization, strategic management of the state."
+                            />
+                            <label class="form-check-label" for="pillar4"
+                              >Governance, decentralization, strategic
+                              management of the state.
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions d-flex" style="align-items: center;">
+                      <button
+                        type="button"
+                        (click)="resetForm()"
+                        class="btn btn-outline-warning mr-1"
+                      >
+                        <i class="fa-solid fa-xmark"></i> Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        class="btn"
+                        style="
+                          background-color: #000723;
+                          color: white;
+                          margin-left: 0.5em;
+                        "
+                      >
+                        <i class="fa-solid fa-check"></i>&nbsp;
+                        <span *ngIf="!bigginLoad">Save</span>
+                        <div
+                          *ngIf="bigginLoad"
+                          class="spinner-border text-light"
+                          role="status"
+                        >
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </button>
+                      <div
+                        *ngIf="show && success"
+                        style="
+                          border-radius: 5px;
+                          background-color: rgba(174, 242, 174, 0.637);
+                          width: 50em;
+                          border: 0.1em solid olivedrab;
+                          height: max-content;
+                          padding: 0.4em;
+                          margin-left: 1em;
+                        "
+                      >
+                        <span
+                          ><i
+                            class="fa-solid fa-circle-check pr-2"
+                            style="color: rgb(5, 168, 29); padding-right: 1em"
+                          ></i
+                          >{{ message }}</span
+                        >
+                      </div>
+                      <div
+                        *ngIf="show && !success"
+                        style="
+                          border-radius: 5px;
+                          background-color: rgba(242, 174, 174, 0.637);
+                          width: 50em;
+                          border: 0.1em solid olivedrab;
+                          height: max-content;
+                          padding: 0.4em;
+                          margin-left: 1em;
+                        "
+                      >
+                        <span
+                          ><i
+                            class="fa-solid fa-xmark pr-2"
+                            style="color: rgb(168, 5, 5)"
+                          ></i
+                          >{{ message }}</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+  <p-sidebar [(visible)]="recommandation" [fullScreen]="true" position="right">
+    <div class="container">
+      <h1 class="text-center mb-3">You also have these problems</h1>
+      <!-- <div class="text-center">
+        <img
+          style="width: 33em"
+          src="assets/images/illustrations/No data-rafiki.png"
+          alt=""
+        />
+      </div> -->
+      <div class="table-responsive">
+        <p-table [tableStyle]="{ 'min-width': '30rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Problems titles</th>
+              <th>Authors</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-d>
+            <tr>
+              <td class="text-left">
+                <a class="d-inline-block text-truncate" style="max-width: 25em">
+                  hi
+                </a>
+              </td>
+              <td>
+                <span>pie</span>
+              </td>
+
+              <td class="d-flex">
+                <a class="btn btn-danger delete mr-1">
+                  <i></i>
+                </a>
+                <button class="btn" type="button">
+                  <i class="fa-solid fa-eye-slash"></i>
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-sidebar>
+  <!-- END: Content-->
+
+  <div class="sidenav-overlay"></div>
+  <div class="drag-target"></div>
+</div>
+<div
+  style="
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5.6em !important;
+    margin-bottom: 1em;
+  "
+></div>
+
+<div class="p-3">
+  <app-footer></app-footer>
+</div>

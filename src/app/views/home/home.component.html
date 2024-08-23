@@ -1,0 +1,232 @@
+<div class="jumbotron jumbotron-fluid" id="banner">
+  <div style="height: max-content" class="container text-center text-md-left">
+    <header>
+      <div class="row justify-content-between my-4" style="display: flex !important;">
+        <div class="col-md-6">
+          <img src="assets/img/logo.png" alt="logo" />
+        </div>
+        <div class="col-md-6 align-self-center">
+          <div style="width: 100%; justify-content: end" class="d-flex">
+            <a style="color: aliceblue; font-size: larger; font-weight: bold">
+              Change to &nbsp;
+            </a>
+            <img
+              style="width: 1.5em; height: 2em"
+              src="assets/img/france.png"
+              alt=""
+            />
+            <a href="#" style="font-weight: bold" class="text-white lead"
+              >&nbsp;Fr</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="row" style="height: max-content;">
+      <div class="col-md-6 herores" style="text-align: left">
+        <h1 style="text-transform: uppercase" class="restitle display-1 text-white my-5">
+          Become an<br />
+          Innovation Booster 
+        </h1>
+
+        <p class="lead text-white my-4">
+          “ <span style="font-weight: bolder;">CollabInnovate</span> ”, the revolutionary platform that facilitates
+          open innovation by helping businesses solve their problems and achieve innovative solutions to their problems. 
+        </p>
+        <a
+          href="#started"
+          style="background-color: azure; color: rgb(0, 12, 59)"
+          class="btn my-4 font-weight-bold atlas-cta"
+          >Get Started</a
+        >
+      </div>
+      <div class="vid1 video col-md-6 my-5">
+        <iframe
+          width="500"
+          height="500"
+          src="https://www.youtube.com/embed/Ve7vs_jAB_8?si=HovfxDS-7YlQrW1W"
+          frameborder="0"
+          allowfullscreen
+          style="border: 1em solid rgba(0, 18, 91, 0.674); border-radius: 80px"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container  " style="display: flex;  justify-content: center;">
+  <div class="vid2 video  my-5">
+    <iframe
+      width="500"
+      height="500"
+      src="https://www.youtube.com/embed/Ve7vs_jAB_8?si=HovfxDS-7YlQrW1W"
+      frameborder="0"
+      allowfullscreen
+      style="border: 1em solid rgba(0, 18, 91, 0.674); border-radius: 80px"
+    ></iframe>
+  </div>
+</div>
+
+<div class="container my-5">
+
+  <h2 class="text-center font-weight-bold d-block mb-3">Testimonial</h2>
+  <ngx-slick-carousel
+    class="carousel"
+    #slickModal="slick-carousel"
+    [config]="slideConfig"
+    (init)="slickInit($event)"
+  >
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide my-5 d-flex">
+      <div>
+        <div style="max-width: 38em" class="testimonial-item d-flex">
+          <div style="padding: 20px">
+            <img
+              style="max-width: 37em"
+              src="{{ slide.img }}"
+              class="card-img-top img-thumbnail"
+              alt="..."
+            />
+          </div>
+          <div style="padding: 20px; max-width: 20em">
+            <h1 style="max-width: 100%" class="testimonial">{{ slide.nom }}</h1>
+            <h3 style="max-width: 100%" class="testimonial">
+              {{ slide.post }}
+            </h3>
+            <p
+              style="
+                overflow: hidden;
+                max-height: 6em;
+                line-height: 1.2em;
+                text-overflow: ellipsis;
+              "
+            >
+              {{ slide.testimonial }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ngx-slick-carousel>
+</div>
+
+<!-- price table -->
+<div class="container my-5 py-2" id="started">
+  <h2  class="text-center font-weight-bold d-block mb-3">Get started now</h2>
+  <div class="row" style="display: flex; justify-content: center">
+    <div id="problem" class="col-md-3 text-center py-4 mt-5">
+      <h4 class="my-4">PROBLEMS</h4>
+      <p class="font-weight-bold" style="padding: 2em; height: 14.6em;">
+        This role consists of identifying specific problems and needs in terms of structural transformation 
+        of the economy and evaluating the offers of startups and solution providers to respond to them.
+      </p>
+      <a
+        (click)="gotoservice('addproblem')"
+        class="btn my-4 font-weight-bold atlas-cta"
+        style="background-color: white"
+        >I have a problem</a
+      >
+    </div>
+    <div class="col-md-3 text-center py-4 mt-5" id="solution">
+      <h4 class="my-4">SOLUTIONS</h4>
+      <p class="font-weight-bold" style="padding: 2em;height: 14.6em;">
+        This role consists of offering innovative products or services 
+        that meet the needs of SMEs and GEs to promote their economic transformation.
+        Solvers must demonstrate their ability to innovate.
+      </p>
+      <a
+        (click)="gotoservice('addsolution')"
+        class="btn my-4 font-weight-bold atlas-cta"
+        style="background-color: white"
+        >I have a solution</a
+      >
+    </div>
+    <div id="contribution" class="col-md-3 text-center py-4 mt-5">
+      <h4 class="my-4">CONTRIBUTIONS</h4>
+      <p class="font-weight-bold" style="padding: 2em;height: 14.6em;">
+        This role is essential as funding facilitators for startups and solution providers. 
+        Their participation helps accelerate the development of projects and ensures the economic visibility of the solutions.
+      </p>
+      <a
+        (click)="gotoservice('contribute')"
+        class="btn my-4 font-weight-bold atlas-cta"
+        style="background-color: white"
+        >I want to contribute</a
+      >
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="jumbotron jumbotron-fluid" id="contact">
+    <div class="container my-5 py-5">
+      <div class="row justify-content-between">
+        <div class="col-md-6 text-white">
+          <h2 class="font-weight-bold">Contact Us</h2>
+          <p class="my-4">
+            Our mission is to help you enhance,
+            <br />
+            your data assets in the most efficient way
+            eco-responsible possible.
+          </p>
+          <ul class="list-unstyled">
+            <li>Email : <a href="mailto:collabinnovate@gmail.com">collabinnovate&#64;gmail.com</a></li>
+            <li>Phone : 696834486/698916150</li>
+            <li>Address : Yaoundé-Park-Kyriakides Cameroon </li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <form>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name">Your Name</label>
+                <input type="name" class="form-control" id="name" />
+              </div>
+              <div class="form-group col-md-6">
+                <label for="Email">Your Email</label>
+                <input type="email" class="form-control" id="Email" />
+              </div>
+            </div>
+            <div class="form-group my-3">
+              <label for="message">Message</label>
+              <textarea class="form-control" id="message" rows="3"></textarea>
+            </div>
+            <button
+              type="submit"
+              style="background-color: white"
+              class="btn font-weight-bold atlas-cta atlas-cta-wide my-3"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- copyright -->
+  <div class="jumbotron jumbotron-fluid" id="copyright">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div
+          class="col-md-6 text-white align-self-center text-center text-md-left my-2"
+        >
+          Copyright © 2024 CollabInnovate.
+        </div>
+        <div
+          class="col-md-6 align-self-center text-center text-md-right my-2"
+          id="social-media"
+        >
+          <a href="#" class="d-inline-block text-center ml-2">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="#" class="d-inline-block text-center ml-2">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="#" class="d-inline-block text-center ml-2">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

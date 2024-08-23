@@ -1,0 +1,295 @@
+<div
+  class="horizontal-layout horizontal-menu horizontal-menu-padding content-detached-left-sidebar app-contacts"
+  data-open="click"
+  data-menu="horizontal-menu"
+  data-col="content-detached-left-sidebar"
+>
+  <div class="sticky-top">
+    <app-header></app-header>
+  </div>
+  <!-- BEGIN: Content-->
+  <div class="mt-2" style="margin: 0 5em">
+    <div class="content-overlay"></div>
+    <div class="row">
+      <div class="content-header"></div>
+      <div class="content-detached col-md-12">
+        <div class="content-body">
+          <div class="content-overlay"></div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 1em;
+            "
+          >
+            <h4 class="card-title" style="font-size: 1.5em">All propbems</h4>
+            <div class="d-flex">
+              <button
+                routerLink="/addproblem"
+                class="btn btn-sm addproblem"
+                style="
+                  background-color: #000723ac;
+                  color: white;
+                  font-size: 1.5em;
+                  margin-right: 0.3em;
+                "
+              >
+                <i class="d-md-none d-block ft-plus white"></i>
+                <span class="d-md-block d-none"
+                  ><i class="fa-solid fa-plus"></i> Add Problem</span
+                >
+              </button>
+              <p-button
+                label="Filters"
+                type="button"
+                class="mr-2 custom-button"
+                (click)="sidebarVisible2 = true"
+                icon="fa-solid fa-filter"
+                severity="info"
+              />
+            </div>
+          </div>
+          <section class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="bug-list-search">
+                    <div class="bug-list-search-content">
+                      <div class="sidebar-toggle d-block d-lg-none">
+                        <i class="ft-menu font-large-1"></i>
+                      </div>
+                      <form action="#">
+                        <div class="position-relative">
+                          <input
+                            type="search"
+                            id="search-contacts"
+                            class="form-control"
+                            placeholder="Search propbems..."
+                            [(ngModel)]="problemFilter.title"
+                            (ngModelChange)="onSearchChange()"
+                            [ngModelOptions]="{ standalone: true }"
+                          />
+                          <div class="form-control-position">
+                            <i
+                              class="la la-search text-size-base text-muted la-rotate-270"
+                            ></i>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div *ngIf="(filteredData | filterBy : problemFilter).length != 0">
+            <section class="row all-contacts">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="card-body">
+                      <!-- Task List table -->
+                      <div class="table-responsive">
+                        <p-table
+                          [value]="paginatedData | filterBy : problemFilter"
+                          [tableStyle]="{ 'min-width': '30rem' }"
+                        >
+                          <ng-template pTemplate="header">
+                            <tr>
+                              <th>Problems titles</th>
+                              <th>Authors</th>
+                              <th>Participations</th>
+                              <th>Actions</th>
+                            </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-d>
+                            <tr>
+                              <td class="text-left">
+                                <a
+                                  routerLink="/problem/{{ d.id }}"
+                                  class="d-inline-block text-truncate"
+                                  style="max-width: 25em"
+                                >
+                                  {{ d.title }}
+                                </a>
+                              </td>
+                              <td>
+                                <span>{{ d.author }}</span>
+                              </td>
+                              <td class="phone">
+                                <i
+                                  style="color: #000723; padding-right: 0.5em"
+                                  class="fa-solid fa-user pr-2"
+                                ></i>
+
+                                <span *ngIf="d.participations < 10"
+                                  >0{{ d.participations }}</span
+                                >
+
+                                <span *ngIf="d.participations >= 10">{{
+                                  d.participations
+                                }}</span>
+                              </td>
+                              <td class="d-flex">
+                                <a
+                                  (click)="toggleFavorite(d.id)"
+                                  class="btn btn-danger delete mr-1"
+                                >
+                                  <i
+                                    [ngClass]="
+                                      favorisList.includes(d.id)
+                                        ? 'fa-solid fa-star'
+                                        : 'fa-regular fa-star'
+                                    "
+                                  ></i>
+                                </a>
+                                <button
+                                  class="btn"
+                                  type="button"
+                                  (click)="changeview()"
+                                >
+                                  <i class="fa-solid fa-eye-slash"></i>
+                                </button>
+                              </td>
+                            </tr>
+                          </ng-template>
+                        </p-table>
+
+                        <p-paginator
+                          [rows]="rows"
+                          [totalRecords]="totalRecords"
+                          (onPageChange)="onPageChange($event)"
+                        >
+                        </p-paginator>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div
+            class="text-center"
+            *ngIf="(filteredData | filterBy : problemFilter).length === 0"
+          >
+            <img
+              style="width: 33em"
+              src="assets/images/illustrations/No data-rafiki.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="sidebar-detached col-md-3">
+        <div>
+          <div class="bug-list-sidebar-content">
+            <!-- Predefined Views -->
+            <!--/ Predefined Views -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p-sidebar [(visible)]="sidebarVisible2" position="right">
+    <div>
+      <div class="card-header">
+        <div class="media pl-1 pt-1">
+          <p class="lead">Filters</p>
+        </div>
+      </div>
+
+      <!-- Contacts View -->
+      <div class="card-body border-top">
+        <ul class="list-group">
+          <li
+            class="list-group-item list-group-item-action"
+            [class.active]="activeTab === 'all'"
+            (click)="selectTab('all')"
+          >
+            <a>All problems</a>
+          </li>
+          <li
+            class="list-group-item list-group-item-action"
+            [class.active]="activeTab === 'recent'"
+            (click)="selectTab('recent')"
+          >
+            <a>Recently added</a>
+          </li>
+          <li
+            class="list-group-item list-group-item-action"
+            [class.active]="activeTab === 'favorite'"
+            (click)="selectTab('favorite')"
+          >
+            <a>Favorite problems</a>
+          </li>
+          <li
+            class="list-group-item list-group-item-action"
+            [class.active]="activeTab === 'my'"
+            (click)="selectTab('my')"
+          >
+            <a>My problems</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Groups -->
+      <div class="card-body">
+        <p class="lead mt-2">Another filters</p>
+        <div class="form-group">
+          <label for="dateSelect">Date added</label>
+          <select
+            [(ngModel)]="selectedDate"
+            (ngModelChange)="filterData()"
+            class="form-select"
+            id="dateSelect"
+          >
+            <option value="last_week">Last week</option>
+            <option value="last_month">Last Month</option>
+          </select>
+        </div>
+        <div>
+          <label for="sectorSelect">Category</label>
+          <select
+            [(ngModel)]="selectedCategory"
+            (ngModelChange)="filterData()"
+            class="form-select"
+            id="sectorSelect"
+          >
+            <option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <!--/ Groups -->
+    </div>
+  </p-sidebar>
+
+
+  <!-- END: Content-->
+
+  <div class="sidenav-overlay"></div>
+  <div class="drag-target"></div>
+</div>
+<google-map
+  height="450px"
+  width="1000px"
+  [center]="center"
+  [zoom]="zoom"
+  (mapClick)="moveMap($event)"
+  (mapMousemove)="move($event)"
+>
+</google-map>
+<!-- END: Body-->
+
+<div
+  style="
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5.6em !important;
+    margin-bottom: 1em;
+  "
+>
+  <app-footer></app-footer>
+</div>

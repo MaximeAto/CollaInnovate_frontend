@@ -1,0 +1,253 @@
+<div
+  class="horizontal-layout horizontal-menu horizontal-menu-padding content-detached-left-sidebar app-contacts"
+  data-open="click"
+  data-menu="horizontal-menu"
+  data-col="content-detached-left-sidebar"
+>
+<div class="sticky-top">
+  <app-header></app-header>
+</div>
+  <!-- BEGIN: Content-->
+  <div class="app-content mt-2" style="margin: 0 5em">
+    <div class="content-overlay"></div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="content-header">
+          <div
+            style="width: 96%"
+            class="content-header-left col-md-6 col-12 mb-2 mt-3"
+          >
+            <h1
+              style="color: #000723; font-size: 3em; padding-bottom: 1em"
+              class="content-header-title mb-0"
+            >
+              {{ problem.title }}
+            </h1>
+          </div>
+        </div>
+        <div class="content-detached">
+          <div class="content-body">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <p
+                    [innerHTML]="safeHtml"
+                    style="padding: 1em; font-size: 1.5em; text-align: justify"
+                  ></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-detached col-md-4">
+        <div>
+          <div class="bug-list-sidebar-content">
+            <!-- Predefined Views -->
+            <div class="card">
+              <div class="card-header">
+                <div class="media pl-1 pt-1">
+                  <p class="lead" style="font-size: 1.5em; font-weight: 600">
+                    <i class="fa-solid fa-circle-info"></i> &nbsp;More
+                    informations
+                  </p>
+                </div>
+              </div>
+
+              <!-- Groups -->
+              <div class="card-body">
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="false"
+                        aria-controls="collapseOne"
+                      >
+                        Business needs improvement
+                      </button>
+                    </h2>
+                    <div
+                      id="collapseOne"
+                      class="accordion-collapse collapse"
+                      data-bs-parent="#accordionExample"
+                    >
+                      <div class="accordion-body">
+                        {{ problem.activity_requiring_improvement }}
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo"
+                          aria-expanded="false"
+                          aria-controls="collapseTwo"
+                        >
+                          Population affected(Quality)
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseTwo"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          {{ problem.affected_population }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseThree"
+                          aria-expanded="false"
+                          aria-controls="collapseThree"
+                        >
+                          Concerns population affected
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseThree"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          {{ problem.concerns_of_affected_population }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseFour"
+                          aria-expanded="false"
+                          aria-controls="collapseFour"
+                        >
+                          Impacts on these populations
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseFour"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          {{ problem.impact_on_affected_population }}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseFive"
+                          aria-expanded="false"
+                          aria-controls="collapseFive"
+                        >
+                          Population volume
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseFive"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionExample"
+                      >
+                        <div class="accordion-body">
+                          {{ problem.quantitative_volume_affected_population }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="list-group">
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-start"
+                    >
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">Author</div>
+                        {{ problem.author }}
+                      </div>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-start"
+                    >
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">Participations</div>
+                        {{ problem.participations }}
+                      </div>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-start"
+                    >
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">deadline</div>
+                        <span style="color: red">{{ problem.deadline }}</span>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <div style="width: 100%; margin-top: 1em;" class="btn-group">
+                    <button
+                      routerLink="/addsolution/{{ problemID }}"
+                      style="width: 100%; color: white; background: #000723"
+                      type="button"
+                      class="btn"
+                    >
+                      I have a solution
+                    </button>
+                    <button
+                      *ngIf="itsmine"
+                      type="button"
+                      style="background: #000723; border-top-right-radius: 7px; border-bottom-right-radius: 7px;"
+                      class="btn dropdown-toggle-split"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i style="color: white;" class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <ul style="width: 100%" class="dropdown-menu">
+                      <li routerLink="/solutions/{{ problemID }}" ><a  class="dropdown-item">All solutions</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!--/ Groups -->
+              </div>
+              <!--/ Predefined Views -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+  </div>
+  <!-- END: Body-->
+
+  <div
+    style="
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 5.6em !important;
+      margin-bottom: 1em;
+    "
+  >
+    <app-footer></app-footer>
+  </div>
+</div>

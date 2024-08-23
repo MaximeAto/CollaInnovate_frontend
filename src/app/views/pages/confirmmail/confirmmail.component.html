@@ -1,0 +1,26 @@
+<div style="padding: 6em 0">
+  <div class="card container">
+    <div class="card-body" *ngIf="!verified">
+      <h2 style="margin-bottom: 1em">Email verification</h2>
+      <p class="card-text">
+        We have sent a verification code to your email address. Please enter the
+        code below to verify your email.
+      </p>
+
+      <form [formGroup]="verificationForm" (ngSubmit)="verify()">
+        <div class="form-group">
+          <label for="verificationCode" style="font-weight: 600;">Verification code</label>
+          <p-inputOtp style="margin-top: 1.5em;" [length]="8" id="verificationCode" formControlName="verificationCode" [integerOnly]="true" />
+        </div>
+        <button type="submit" class="btn" style="background-color: #000723">
+          Verify
+        </button>
+      </form>
+      <p class="mt-3"><a (click)="ressendCode()">Resend code</a></p>
+    </div>
+    <div class="card-body text-center" *ngIf="verified">
+      <h1 style="font-size: 6em; color: green; margin-bottom: 0.4em;"><i class="fa-solid fa-circle-check"></i></h1>
+      <p style="font-size: 1.3em;">L'email a été verfié avec success. Vous serez redirigé vers une autre page automatiquement...</p>
+    </div>
+  </div>
+</div>

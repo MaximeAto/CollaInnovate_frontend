@@ -1,0 +1,47 @@
+
+label{
+  margin-bottom: 0.5em;
+}
+
+input:focus, textarea:focus, select:focus {
+  border: 1px solid #4A9DEC;
+  box-shadow: 0px 0px 0px 3px #0007233d;
+  background-color: white;
+}
+
+input, textarea, select{
+  margin-bottom: 1em;
+}
+
+select{
+  height: 2.3em !important;
+}
+
+/* Fichier SCSS du composant */
+
+:host ::ng-deep .p-dropdown {
+  font-size: 0.95em !important; /* Taille de la police pour le dropdown */
+  width: 100%;
+
+}
+
+.p-dropdown:focus,
+.p-dropdown:focus-within {
+  border: 1px solid #4A9DEC !important;
+  box-shadow: 0px 0px 0px 3px #0007233d !important;
+  background-color: white !important;
+}
+
+:host ::ng-deep .p-dropdown-item {
+  font-size: 0.95em !important; /* Taille de la police pour les options */
+}
+
+:host ::ng-deep .p-dropdown-label {
+  font-size: 0.95em !important; /* Taille de la police pour l'élément sélectionné */
+}
+
+:host ::ng-deep .p-dropdown-label.p-placeholder {
+  font-size: 0.95em !important; /* Taille de la police pour le placeholder */
+}
+
+

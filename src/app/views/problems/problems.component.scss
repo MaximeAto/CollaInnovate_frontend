@@ -1,0 +1,89 @@
+
+.list-group .active {
+  background: #000723;
+  border-color: #000723;
+}
+
+.list-group-item.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.list-group-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.list-group-item.active a {
+  color: white;
+}
+/* Enlever la couleur bleue par défaut des liens lors du clic */
+.list-group-item a {
+  text-decoration: none;
+  color: inherit;
+  outline: none; /* Enlève le contour du focus */
+}
+
+.list-group-item a:focus, .list-group-item a:active {
+  outline: none; /* Enlève le contour du focus */
+  box-shadow: none; /* Enlève la boîte d'ombre */
+}
+
+.list-group-item:active {
+  background-color: inherit; /* Empêche la couleur de fond bleue */
+  color: inherit; /* Empêche la couleur de texte bleue */
+}
+
+
+img{
+  width: 2em;
+}
+
+.addproblem:hover{
+  background: #000723c6 !important;
+}
+
+thead tr th {
+  border-top: none !important;
+}
+
+input, select{
+  border: 1px solid rgba(81, 71, 101, 0.248) !important;
+  color: #000723;
+}
+
+input:hover,select:hover,
+input:focus {
+  border: 1px solid #4A9DEC;
+  box-shadow: 0px 0px 0px 3px #0007233d;
+  background-color: white;
+}
+label{
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+}
+
+td{
+  font-size: large;
+}
+
+.list-group-item-action{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.lead{
+  font-weight: 500;
+}
+
+.custom-button {
+  border-radius: 10px;
+}
+
+
+
+

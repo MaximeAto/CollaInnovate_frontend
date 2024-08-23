@@ -1,0 +1,49 @@
+
+.list-group .active {
+    background: #000723;
+  }
+  
+  img{
+    width: 2em;
+  }
+  
+  .addproblem:hover{
+    background: #000723c6 !important;
+  }
+  
+  thead tr th {
+    border-top: none !important;
+  }
+  
+  input, select{
+    border: 1px solid rgba(81, 71, 101, 0.248) !important;
+    color: #000723;
+  }
+  
+  input:hover,select:hover,
+  input:focus {
+    border: 1px solid #4A9DEC;
+    box-shadow: 0px 0px 0px 3px #0007233d;
+    background-color: white;
+  }
+  label{
+    padding-bottom: 0.5em;
+    padding-top: 0.5em;
+  }
+  
+  td{
+    font-size: large;
+  }
+  
+  .list-group-item-action{
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  a{
+    text-decoration: none !important;
+  }
+  
+  .lead{
+    font-weight: 500;
+  }

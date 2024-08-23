@@ -1,0 +1,171 @@
+<div
+  class="horizontal-layout horizontal-menu horizontal-menu-padding content-detached-left-sidebar app-contacts"
+  data-open="click"
+  data-menu="horizontal-menu"
+  data-col="content-detached-left-sidebar"
+>
+<div class="sticky-top">
+  <app-header></app-header>
+</div>
+  <!-- BEGIN: Content-->
+  <div class="app-content mt-2" style="margin: 0 5em">
+    <div class="content-overlay"></div>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="content-header">
+          <div
+            style="width: 96%"
+            class="content-header-left col-md-6 col-12 mb-2 mt-3"
+          >
+            <h1
+              style="color: #000723; font-size: 3em; padding-bottom: 1em"
+              class="content-header-title mb-0"
+            >
+              {{solution.title}}
+            </h1>
+          </div>
+        </div>
+        <div class="content-detached">
+          <div class="content-body">
+            <div class="card">
+              <div class="card-content">
+                <div class="card-body">
+                  <p
+                    [innerHTML]="safeHtml"
+                    style="padding: 1em; font-size: 1.5em; text-align: justify"
+                  >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-detached col-md-4">
+      
+          <div class="bug-list-sidebar-content">
+            <!-- Predefined Views -->
+            <div class="card">
+              <div class="card-header">
+                <div class="media pl-1 pt-1">
+                  <p class="lead" style="font-size: 1.5em; font-weight: 600">
+                    <i class="fa-solid fa-circle-info"></i> &nbsp;More
+                    informations
+                  </p>
+                </div>
+              </div>
+
+              <!-- Groups -->
+              <div class="card-body">
+                <ul class="list-group">
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-start"
+                  >
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Author</div>
+                      {{solution.author}}
+                    </div>
+                  </li>
+                  <li
+                    class="list-group-item d-flex justify-content-between align-items-start"
+                  >
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">Date of publication</div>
+                      16/07/2024
+                    </div>
+                  </li>
+                  <div style="margin-top: 1em;">
+                    <a  href="#">Click to see more informations <i class="fa-solid fa-chevron-right"></i></a>
+                  </div>
+                </ul>
+              </div>
+              <!--/ Groups -->
+            </div>
+            <!--/ Predefined Views -->
+          </div>
+
+          <div class="bug-list-sidebar-content">
+            <!-- Predefined Views -->
+            <div class="card">
+              <div class="card-header">
+                <div class="media pl-1 pt-1">
+                  <p class="lead" style="font-size: 1.5em; font-weight: 600">
+                    <i class="fa-solid fa-check"></i> &nbsp;Other solutions
+                  </p>
+                </div>
+              </div>
+
+              <!-- Groups -->
+              <div class="card-body">
+                <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      Real-time Infrastructure Monitoring with AI
+                    </span>
+                    
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      Predictive Maintenance Solutions
+                    </span>
+                   
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      AI-Driven Traffic Management Systems
+                    </span>
+                    
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      Smart Energy Distribution Networks
+                    </span>
+                    
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      Public-Private Partnership for Infrastructure Development
+                    </span>
+                    
+                    
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
+                      Customized AI Training and Support Programs
+                    </span>
+                    
+                  </li>
+                </ul>
+                
+                
+              </div>
+            
+            </div>
+          </div>
+        
+      </div>
+      <div style="display: flex;justify-content: start;">
+        <button type="button" class="btn btn-success"><i class="fa-solid fa-face-smile-beam"></i>&nbsp; Choose the solution</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 1.5em;"><i class="fa-solid fa-circle-exclamation"></i>&nbsp; Other actions</button>
+      </div>
+    </div>
+  </div>
+  <!-- END: Content-->
+
+  <div class="sidenav-overlay"></div>
+  <div class="drag-target"></div>
+</div>
+<!-- END: Body-->
+
+<div
+  style="
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 5.6em !important;
+    margin-bottom: 1em;
+    margin-top: 5em;
+  "
+>
+  <app-footer></app-footer>
+</div>

@@ -1,0 +1,298 @@
+<div id="header1" style="margin-bottom: 1.5em">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Logo -->
+      <a
+        style="font-weight: 800; font-size: 1.3em"
+        class="navbar-brand"
+        href="#"
+      >
+        <img
+          src="../../../assets/img/logo2.png"
+          class="brand-logo"
+          alt="modern admin logo"
+          style="width: 2.5em"
+        />
+
+        <span style="margin-top: 2em">Collabinnovate</span>
+      </a>
+
+      <!-- Navbar items -->
+      <div class="justify-content-end">
+        <div class="navbar-nav">
+          <div class="nav-item dropdown dropdown-notification" style="margin-right: 0.5em;">
+            <a class="nav-link nav-link-label" href="#">
+              <i
+                class="fa-regular fa-bell"
+                style="color: #0b011f; font-size: 1.9em"
+              ></i>
+              <span
+                class="badge badge-pill badge-danger badge-up badge-glow"
+                style="background-color: #ff0000; top: 0.5em;"
+              >
+                5
+              </span>
+            </a>
+          </div>
+          <div>
+            <div
+              class="menu-container"
+              appClickOutside
+              (clickOutside)="clickedOutside()"
+            >
+              <div class="menu-toggler">
+                <a (click)="toggleMenu()" role="button">
+                  <span class="avatar avatar-online">
+                    <img
+                      src="assets/img/02.jpg"
+                      alt="avatar"
+                      style="width: 2.8em; border-radius: 20px"
+                    />
+                  </span>
+                </a>
+              </div>
+              <div class="menu card" *ngIf="isMenuOpened">
+                <div class="menu-item">
+                  <a href="#"><i class="fa-regular fa-user"></i>Profile</a>
+                </div>
+                <div class="menu-item">
+                  <a href="#"><i class="fa-solid fa-gear"></i>Settings</a>
+                </div>
+                <div class="menu-item">
+                  <a href="#"
+                    ><i class="fa-regular fa-credit-card"></i>Payments</a
+                  >
+                </div>
+                <div class="menu-item">
+                  <a href="#"
+                    ><i class="fa-solid fa-arrow-right-from-bracket"></i
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- END: Header-->
+
+  <!-- BEGIN: Main Menu-->
+  <div
+  class="header-navbar navbar-expand-sm navbar navbar-horizontal navbar-fixed navbar-dark navbar-without-dd-arrow"
+  role="navigation"
+  data-menu="menu-wrapper"
+  style="background-color: #000723"
+>
+  <div
+    class="navbar-container main-menu-content container center-layout"
+    data-menu="menu-container"
+  >
+    <ul
+      class="nav navbar-nav"
+      id="main-menu-navigation"
+      data-menu="menu-navigation"
+    >
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          routerLink="/dashboard"
+          [ngClass]="{ 'active': isActive('/dashboard') }"
+        >
+          <span data-i18n="Dashboard">
+            <i class="fa-solid fa-chart-simple" style="margin-right: 0.5em;"></i>Dashboard
+          </span>
+        </a>
+      </li>
+      <li class="dropdown nav-item" data-menu="dropdown">
+        <a
+          class="nav-link"
+          routerLink="/problems"
+          [ngClass]="{ 'active': isActive('/problems') }"
+        >
+          <span data-i18n="Templates">
+            <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.5em;"></i>Problems
+          </span>
+        </a>
+      </li>
+      <li class="dropdown nav-item" data-menu="dropdown">
+        <a
+          class=" nav-link"
+          routerLink="/mysolutions"
+          [ngClass]="{ 'active': isActive('/mysolutions') }"
+        >
+          <span data-i18n="Apps">
+            <i class="fa-solid fa-check" style="margin-right: 0.5em;"></i>Solutions
+          </span>
+        </a>
+      </li>
+      <li class="dropdown nav-item" data-menu="dropdown">
+        <a
+          class=" nav-link"
+          routerLink="/contributions"
+          [ngClass]="{ 'active': isActive('/contributions') }"
+        >
+          <i class="la la-file-text" ></i>
+          <span data-i18n="Pages">
+            <i class="fa-solid fa-people-pulling" style="margin-right: 0.5em;"></i>Contributions
+          </span>
+        </a>
+      </li>
+      <li class="dropdown nav-item" data-menu="dropdown">
+        <a
+          class=" nav-link"
+          routerLink="/others"
+          [ngClass]="{ 'active': isActive('/others') }"
+        >
+          <span data-i18n="Others">
+            <i class="fa-solid fa-ellipsis" style="margin-right: 0.5em;"></i>Others
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+  <!-- END: Main Menu-->
+  <!-- style="background-color: #000723" -->
+</div>
+
+<div id="header2" style="margin-bottom: 1.5em">
+  <nav style="background-color: #000723; padding: 0.5em; width: 100vw">
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      "
+    >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasDarkNavbar"
+        aria-controls="offcanvasDarkNavbar"
+        aria-label="Toggle navigation"
+      >
+        <i
+          style="color: aliceblue; font-size: 1.9em"
+          class="fa-solid fa-bars"
+        ></i>
+      </button>
+
+      <div
+        style="width: 50vw"
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasDarkNavbar"
+        aria-labelledby="offcanvasDarkNavbarLabel"
+      >
+        <div class="offcanvas-header">
+          <h5
+            style="font-size: 2em"
+            class="offcanvas-title"
+            id="offcanvasDarkNavbarLabel"
+          >
+            Menu
+          </h5>
+          <button
+            type="button"
+            class="btn-close btn-close-black"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Problems</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Solutions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contributions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Others</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <a
+        style="
+          font-weight: 800;
+          font-size: 1.3em;
+          text-decoration: none;
+          color: white;
+        "
+        href="#"
+      >
+        <img
+          src="../../../assets/img/logo.png"
+          class="brand-logo"
+          alt="modern admin logo"
+          style="width: 2.5em"
+        />
+      </a>
+      <div style="display: flex; align-items: center">
+        <div class="dropdown-notification" style="margin-right: 20px">
+          <a href="#" style="text-decoration: none; color: white">
+            <i
+              class="fa-regular fa-bell"
+              style="color: #ffffff; font-size: 1.9em"
+            ></i>
+            <span
+              class="badge badge-pill badge-danger badge-up badge-glow"
+              style="background-color: #ff0000; top: 1.1em; right: 6.2em"
+              >5</span
+            >
+          </a>
+        </div>
+
+        <div class="dropdown">
+          <a
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            style="text-decoration: none; color: white; border-radius: 100px"
+          >
+            <span class="avatar avatar-online">
+              <img
+                src="assets/img/02.jpg"
+                alt="avatar"
+                style="width: 2.2em; border-radius: 20px"
+              />
+            </span>
+          </a>
+          <div class="dropdown-menu menu">
+            <div class="menu-item">
+              <a href="#"><i class="fa-regular fa-user"></i>Profile</a>
+            </div>
+            <div class="menu-item">
+              <a href="#"><i class="fa-solid fa-gear"></i>Settings</a>
+            </div>
+            <div class="menu-item">
+              <a href="#"><i class="fa-regular fa-credit-card"></i>Payments</a>
+            </div>
+            <div class="menu-item">
+              <a href="#"
+                ><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
