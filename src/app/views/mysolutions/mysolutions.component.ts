@@ -42,19 +42,32 @@ export class MysolutionsComponent  implements OnInit, AfterViewInit, OnDestroy {
 
   sidebarVisible2: boolean = false;
 
-  countries = [
-    { name: 'Algérie', code: 'DZ' },
-    { name: 'Angola', code: 'AO' },
-    { name: 'Bénin', code: 'BJ' },
-    // Ajoutez tous les pays ici
-  ];
   categories = [
-    'Operations Management',
-    'Finance',
-    'Human Resources',
-    'Marketing',
-    // Ajoutez toutes les catégories ici
-  ];
+    "Operations Management",
+    "Finance",
+    "Human Resources",
+    "Marketing",
+    "Sales",
+    "Technology",
+    "Product Development",
+    "Customer Service",
+    "Legal",
+    "Strategic Planning",
+    "R&D (Research and Development)",
+    "Supply Chain Management",
+    "Sustainability",
+    "Health and Safety",
+    "Customer Insights",
+    "Public Relations",
+    "Data Analysis",
+    "Innovation Management",
+    "Risk Management",
+    "Project Management",
+    "Corporate Governance",
+    "Education and Training",
+    "Facility Management",
+    "Vendor Management"
+  ]
   solutionFilter: any = { title: '' };
   filteredData: any[] = [];
   paginatedData: any[] = [];
@@ -63,6 +76,12 @@ export class MysolutionsComponent  implements OnInit, AfterViewInit, OnDestroy {
   totalRecords: number = 0;
   lazyLoading: boolean = true;
   loadLazyTimeout: any;
+  userID : string = "";
+  problems : any[] = []
+  selectedDate: any;
+  selectedCategory: any;
+  selectedProblem: any;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -100,10 +119,10 @@ export class MysolutionsComponent  implements OnInit, AfterViewInit, OnDestroy {
   allSolution(id: any) {
     this.solutionService.allSolution(id).subscribe(
       (value : any) => {
-        this.filteredData = value;
-        this.data = value;
-        console.log(value);
-        
+        this.filteredData = value.solutions;
+        this.data = value.solutions;
+        this.userID = value.user_id;
+        this.problems = value.problems;
         this.totalRecords = this.filteredData.length;
         this.paginateData({ first: 0, rows: this.rows });
         
@@ -146,29 +165,74 @@ export class MysolutionsComponent  implements OnInit, AfterViewInit, OnDestroy {
 
   filterData() {
     const now = new Date();
+
     switch (this.activeTab) {
       case 'all':
         this.filteredData = this.data;
         break;
-      // case 'recent':
-      //   this.filteredData = this.data.filter(
-      //     (item: { dateAdded: string | number | Date }) => {
-      //       const dateAdded = new Date(item.dateAdded);
-      //       const timeDifference = now.getTime() - dateAdded.getTime();
-      //       const hoursDifference = timeDifference / (1000 * 3600);
-      //       return hoursDifference <= 24;
-      //     }
-      //   );
-      //   console.log('recent');
-      //   console.log(this.filteredData.length);
-      //   break;
+      case 'recent':
+        this.filteredData = this.data.filter(
+          (item: { dateAdded: string | number | Date }) => {
+            const dateAdded = new Date(item.dateAdded);
+            const timeDifference = now.getTime() - dateAdded.getTime();
+            const hoursDifference = timeDifference / (1000 * 3600);
+            return hoursDifference <= 24;
+          }
+        );
+        console.log('recent');
+        console.log(this.filteredData.length);
+        break;
       case 'favorite':
         this.filteredData = this.data.filter(
           (item: { id: number }) => this.favorisList.includes(item.id)
         );
         break;
+      case 'my':
+        this.filteredData = this.data.filter(
+          (item: { user_id: string }) => item.user_id === this.userID
+        );
+        break;
       default:
         this.filteredData = this.data;
+    }
+
+    if (this.selectedDate) {
+      let startDate: number | Date;
+      switch (this.selectedDate) {
+        case 'last_week':
+          startDate = new Date(now);
+          startDate.setDate(startDate.getDate() - 7);
+          break;
+        case 'last_month':
+          startDate = new Date(now);
+          startDate.setMonth(startDate.getMonth() - 1);
+          break;
+      }
+      
+      this.filteredData = this.filteredData.filter(
+        (item: { dateAdded: string | number | Date }) => {
+          const dateAdded = new Date(item.dateAdded);
+          return dateAdded >= startDate && dateAdded <= now;
+        }
+      );
+    }
+    if (this.selectedCategory) {
+      let idpbs = this.problems
+      .filter((item: { category: string }) => item.category === this.selectedCategory)
+      .map((item: { id: number }) => item.id);    
+
+      this.filteredData = this.filteredData.filter(
+        (item: { problem_id: number }) => idpbs.includes(item.problem_id)
+      );
+    }
+    if(this.selectedProblem){
+      let idpbs = this.problems
+      .filter((item: { title: string }) => item.title === this.selectedProblem)
+      .map((item: { id: number }) => item.id); 
+
+      this.filteredData = this.filteredData.filter(
+        (item: { problem_id: number }) => idpbs.includes(item.problem_id)
+      );
     }
 
     this.totalRecords = this.filteredData.length;

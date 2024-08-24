@@ -266,7 +266,7 @@ export class ProblemsComponent implements OnInit, AfterViewInit, OnDestroy {
           return dateAdded >= startDate && dateAdded <= now;
         }
       );
-  }
+    }
 
   if (this.selectedCategory) {
       filteredData = filteredData.filter(

@@ -31,7 +31,6 @@
             </div>
             <div class="d-flex">
               <p-button
-                *ngIf="(filteredData | filterBy : solutionFilter).length != 0"
                 label="Filters"
                 type="button"
                 class="mr-2 custom-button"
@@ -210,9 +209,9 @@
           <select
             class="form-select"
             id="dateSelect"
-            (change)="filterByDate($event)"
+            [(ngModel)]="selectedDate"
+            (ngModelChange)="filterData()"
           >
-            <option value="none">Select Date</option>
             <option value="last_week">Last week</option>
             <option value="last_month">Last Month</option>
           </select>
@@ -222,7 +221,8 @@
           <select
             class="form-select"
             id="sectorSelect"
-            (change)="filterByCategory($event)"
+            [(ngModel)]="selectedCategory"
+            (ngModelChange)="filterData()"
           >
             <option value="" disabled selected>Select category</option>
             <option *ngFor="let category of categories" [value]="category">
@@ -231,15 +231,16 @@
           </select>
         </div>
         <div>
-          <label for="countrySelect">Select country</label>
+          <label for="countrySelect">Select problem</label>
           <select
             class="form-select"
             id="countrySelect"
-            (change)="filterByCountry($event)"
+            [(ngModel)]="selectedProblem"
+            (ngModelChange)="filterData()"
           >
-            <option value="" disabled selected>Select country</option>
-            <option *ngFor="let country of countries" [value]="country.code">
-              {{ country.name }}
+            <option value="" disabled selected>Select problem</option>
+            <option *ngFor="let problem of problems" [value]="problem.title">
+              {{ problem.title }}
             </option>
           </select>
         </div>
