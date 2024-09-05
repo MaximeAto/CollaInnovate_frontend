@@ -1,0 +1,148 @@
+<div>
+  <div>
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a
+          style="font-weight: 800; font-size: 1.3em"
+          class="navbar-brand"
+          href="#"
+        >
+          <img
+            src="../../../assets/img/logo2.png"
+            class="brand-logo"
+            alt="modern admin logo"
+            style="width: 2.5em"
+          />
+
+          <span style="margin-top: 2em">Collabinnovate</span>
+        </a>
+
+        <!-- Navbar items -->
+        <div class="justify-content-end">
+          <div class="navbar-nav">
+            <div
+              class="nav-item dropdown dropdown-notification"
+              style="margin-right: 0.5em"
+            >
+              <a class="nav-link nav-link-label" href="#">
+                <i
+                  class="fa-regular fa-bell"
+                  style="color: #0b011f; font-size: 1.9em"
+                ></i>
+                <span
+                  class="badge badge-pill badge-danger badge-up badge-glow"
+                  style="background-color: #ff0000; top: 0.5em"
+                >
+                  5
+                </span>
+              </a>
+            </div>
+            <div>
+              <div class="menu-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="coverimg">
+      <img [src]="coverImage" class="cover-photo rounded" alt="cover" />
+      <div class="file-input-wrapper">
+        <input type="file" (change)="onCoverImageChange($event)" />
+      </div>
+    </div>
+
+    <div class="info row mt-3 gap-3 d-flex ">
+      <div class="profileimg card col-md-4">
+        <img
+          [src]="profileImage"
+          class="rounded mx-auto d-block"
+          alt="profile"
+        />
+        <!-- <div class="file-input-wrapper">
+                        <input type="file" (change)="onProfileImageChange($event)" />
+                    </div> -->
+      </div>
+      <div class="col-md-8 card p-4 px-4" style="width: 59.2em;">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Aline Fasha</h2>
+          </div>
+          <div class="col-md-12 pt-3">
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Email :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>aline&#64;gmail.com</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Phone number :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>+237698916150</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>address :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>Cameroom,yaounde,soa</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Biography :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam
+                  amet beatae, dolorem repellendus aliquam qui culpa quaerat rem
+                  porro expedita nam molestiae iure non laborum, impedit
+                  dignissimos cupiditate facilis numquam.
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Email :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>Cameoun</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <h5>Email :</h5>
+              </div>
+              <div class="col-md-8">
+                <p>Cameoun</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <image-cropper
+    *ngIf="showCropper"
+    [imageChangedEvent]="imageChangedEvent"
+    [maintainAspectRatio]="false"
+    [aspectRatio]="aspectRatio"
+    [roundCropper]="roundCropper"
+    (imageCropped)="onImageCropped($event)"
+    (cropperReady)="cropperReady()"
+    format="png"
+  >
+    <image-cropper>
+      <button *ngIf="croppedImage" (click)="saveCroppedImage()">Save</button>
+    </image-cropper></image-cropper
+  >
+</div>

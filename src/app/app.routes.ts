@@ -4,7 +4,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'profil',
     pathMatch: 'full'
   },
   {
@@ -104,7 +104,13 @@ export const routes: Routes = [
     data: {
       title: 'contributions'
     }
-  }
-
+  },
+  {
+    path : 'profil',
+    loadComponent: () => import('./views/pages/profil/profil.component').then(m => m.ProfilComponent),
+    data: {
+      title: 'profil'
+    }
+  },
 
 ];
