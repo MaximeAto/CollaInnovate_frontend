@@ -51,6 +51,21 @@
           <h3 class="pb-3">Join <strong>CollabInnovate</strong></h3>
           <form [formGroup]="formulaire" (ngSubmit)="signup()">
             <div class="form-group first">
+              <label class="pb-2" for="fullname">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="username"
+                id="username"
+                placeholder="Your username"
+                [ngClass]="{
+                  'is-invalid':
+                    erreurLogin && formulaire.controls['username'].errors
+                }"
+                required
+              />
+            </div>
+            <div class="form-group first">
               <label class="pb-2" for="fullname">Fullname</label>
               <input
                 type="text"

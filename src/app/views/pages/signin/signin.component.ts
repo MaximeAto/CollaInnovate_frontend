@@ -109,6 +109,7 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['/' + destination]);
           localStorage.removeItem('destination');
           localStorage.setItem('email', username);
+          localStorage.setItem('user', response.username);
         },
         (error) => {
           this.toastr.error(error.error.message);

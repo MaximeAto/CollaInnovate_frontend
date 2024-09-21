@@ -1,7 +1,38 @@
-a{
+a {
   text-decoration: none;
 }
-ul img{
+ul img {
   width: 2em;
   border-radius: 100px;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #4a9dec;
+  box-shadow: 0px 0px 0px 3px #0007233d;
+  background-color: white;
+}
+
+input,
+textarea,
+select {
+  margin-bottom: 1em;
+}
+
+.inutcmt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul.comments {
+  min-height: 18em;
+  max-height: 18em;
+  overflow-y: auto;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+

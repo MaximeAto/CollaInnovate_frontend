@@ -41,4 +41,14 @@ export class SolutionService {
     return this.http.get(this.BaseUrl + "solutions/getall/" + id )
   }
 
+  getCommentsBySolution(solutionId: number): Observable<any> {
+    const url = `${this.BaseUrl}/comments/get_by_solution/${solutionId}`;
+    return this.http.get(url)
+  }
+
+  addComment(commentData: any): Observable<any> {
+    const url = `${this.BaseUrl}/comments/add_comment`;
+    return this.http.post(url, commentData, httpOptions3)
+  }
+
 }

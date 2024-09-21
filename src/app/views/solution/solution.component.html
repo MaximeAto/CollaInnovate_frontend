@@ -4,9 +4,9 @@
   data-menu="horizontal-menu"
   data-col="content-detached-left-sidebar"
 >
-<div class="sticky-top">
-  <app-header></app-header>
-</div>
+  <div class="sticky-top">
+    <app-header></app-header>
+  </div>
   <!-- BEGIN: Content-->
   <div class="app-content mt-2" style="margin: 0 5em">
     <div class="content-overlay"></div>
@@ -21,7 +21,7 @@
               style="color: #000723; font-size: 3em; padding-bottom: 1em"
               class="content-header-title mb-0"
             >
-              {{solution.title}}
+              {{ solution.title }}
             </h1>
           </div>
         </div>
@@ -33,127 +33,313 @@
                   <p
                     [innerHTML]="safeHtml"
                     style="padding: 1em; font-size: 1.5em; text-align: justify"
-                  >
-                  </p>
+                  ></p>
+                  <div>
+                    <p-button label="Comments ({{comments.length}})" [rounded]="true" severity="secondary" (onClick)="openSidebar()" />
+                  </div>
                 </div>
               </div>
+            </div>
+            <div style="display: flex; justify-content: start">
+              <button type="button" class="btn btn-success">
+                <i class="fa-solid fa-face-smile-beam"></i>&nbsp; Choose the solution
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="margin-left: 1.5em"
+              >
+                <i class="fa-solid fa-circle-exclamation"></i>&nbsp; Other actions
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="sidebar-detached col-md-4">
-      
-          <div class="bug-list-sidebar-content">
-            <!-- Predefined Views -->
-            <div class="card">
-              <div class="card-header">
-                <div class="media pl-1 pt-1">
-                  <p class="lead" style="font-size: 1.5em; font-weight: 600">
-                    <i class="fa-solid fa-circle-info"></i> &nbsp;More
-                    informations
-                  </p>
-                </div>
+        <div class="bug-list-sidebar-content">
+          <!-- Predefined Views -->
+          <div class="card">
+            <div class="card-header">
+              <div class="media pl-1 pt-1">
+                <p class="lead" style="font-size: 1.5em; font-weight: 600">
+                  <i class="fa-solid fa-circle-info"></i> &nbsp;More
+                  informations
+                </p>
               </div>
+            </div>
 
-              <!-- Groups -->
-              <div class="card-body">
-                <ul class="list-group">
-                  <li
-                    class="list-group-item d-flex justify-content-between align-items-start"
-                  >
-                    <div class="ms-2 me-auto">
-                      <div class="fw-bold">Author</div>
-                      {{solution.author}}
-                    </div>
-                  </li>
-                  <li
-                    class="list-group-item d-flex justify-content-between align-items-start"
-                  >
-                    <div class="ms-2 me-auto">
-                      <div class="fw-bold">Date of publication</div>
-                      16/07/2024
-                    </div>
-                  </li>
-                  <div style="margin-top: 1em;">
-                    <a  href="#">Click to see more informations <i class="fa-solid fa-chevron-right"></i></a>
+            <!-- Groups -->
+            <div class="card-body">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-start"
+                >
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Author</div>
+                    {{ solution.author }}
                   </div>
-                </ul>
-              </div>
-              <!--/ Groups -->
-            </div>
-            <!--/ Predefined Views -->
-          </div>
-
-          <div class="bug-list-sidebar-content">
-            <!-- Predefined Views -->
-            <div class="card">
-              <div class="card-header">
-                <div class="media pl-1 pt-1">
-                  <p class="lead" style="font-size: 1.5em; font-weight: 600">
-                    <i class="fa-solid fa-check"></i> &nbsp;Other solutions
-                  </p>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-start"
+                >
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">Date of publication</div>
+                    16/07/2024
+                  </div>
+                </li>
+                <div style="margin-top: 1em">
+                  <a href="#"
+                    >Click to see more informations
+                    <i class="fa-solid fa-chevron-right"></i
+                  ></a>
                 </div>
-              </div>
+              </ul>
+            </div>
+            <!--/ Groups -->
+          </div>
+          <!--/ Predefined Views -->
+        </div>
 
-              <!-- Groups -->
-              <div class="card-body">
-                <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      Real-time Infrastructure Monitoring with AI
-                    </span>
-                    
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      Predictive Maintenance Solutions
-                    </span>
-                   
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      AI-Driven Traffic Management Systems
-                    </span>
-                    
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      Smart Energy Distribution Networks
-                    </span>
-                    
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      Public-Private Partnership for Infrastructure Development
-                    </span>
-                    
-                    
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="d-inline-block text-truncate" style="max-width: 19em;">
-                      Customized AI Training and Support Programs
-                    </span>
-                    
-                  </li>
-                </ul>
-                
-                
+        <div class="bug-list-sidebar-content">
+          <!-- Predefined Views -->
+          <div class="card">
+            <div class="card-header">
+              <div class="media pl-1 pt-1">
+                <p class="lead" style="font-size: 1.5em; font-weight: 600">
+                  <i class="fa-solid fa-check"></i> &nbsp;Other solutions
+                </p>
               </div>
-            
+            </div>
+
+            <!-- Groups -->
+            <div class="card-body">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    Real-time Infrastructure Monitoring with AI
+                  </span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    Predictive Maintenance Solutions
+                  </span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    AI-Driven Traffic Management Systems
+                  </span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    Smart Energy Distribution Networks
+                  </span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    Public-Private Partnership for Infrastructure Development
+                  </span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <span
+                    class="d-inline-block text-truncate"
+                    style="max-width: 19em"
+                  >
+                    Customized AI Training and Support Programs
+                  </span>
+                </li>
+              </ul>
             </div>
           </div>
-        
+        </div>
       </div>
-      <div style="display: flex;justify-content: start;">
-        <button type="button" class="btn btn-success"><i class="fa-solid fa-face-smile-beam"></i>&nbsp; Choose the solution</button>
-        <button type="button" class="btn btn-primary" style="margin-left: 1.5em;"><i class="fa-solid fa-circle-exclamation"></i>&nbsp; Other actions</button>
-      </div>
+     
     </div>
   </div>
   <!-- END: Content-->
 
-  <div class="sidenav-overlay"></div>
+  <div class="card flex justify-content-center">
+    <p-sidebar [(visible)]="sidebarVisible" [fullScreen]="true">
+      <ng-template pTemplate="header">
+        <span class="font-semibold text-xl"></span>
+      </ng-template>
+      <head>
+        <title>blog comments - Bootdey.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
+        <style type="text/css">
+          body {
+            background: #eee;
+          }
+
+          hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #ffffff;
+          }
+          a {
+            color: #82b440;
+            text-decoration: none;
+          }
+          .blog-comment::before,
+          .blog-comment::after,
+          .blog-comment-form::before,
+          .blog-comment-form::after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+
+          .blog-comment {
+            padding-left: 15%;
+            padding-right: 15%;
+          }
+
+          .blog-comment ul {
+            list-style-type: none;
+            padding: 0;
+          }
+
+          .blog-comment img {
+            opacity: 1;
+            filter: Alpha(opacity=100);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+          }
+
+          .blog-comment img.avatar {
+            position: relative;
+            float: left;
+            margin-left: 0;
+            margin-top: 0;
+            width: 65px;
+            height: 65px;
+          }
+
+          .blog-comment .post-comments {
+            border: 1px solid #eee;
+            margin-bottom: 20px;
+            margin-left: 85px;
+            margin-right: 0px;
+            padding: 10px 20px;
+            position: relative;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -o-border-radius: 4px;
+            border-radius: 4px;
+            background: #fff;
+            color: #6b6e80;
+            position: relative;
+          }
+
+          .blog-comment .meta {
+            font-size: 13px;
+            color: #aaaaaa;
+            padding-bottom: 8px;
+            margin-bottom: 10px !important;
+            border-bottom: 1px solid #eee;
+          }
+
+          .blog-comment ul.comments ul {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 85px;
+          }
+
+          .blog-comment-form {
+            padding-left: 15%;
+            padding-right: 15%;
+            padding-top: 40px;
+          }
+
+          .blog-comment h3,
+          .blog-comment-form h3 {
+            margin-bottom: 40px;
+            font-size: 26px;
+            line-height: 30px;
+            font-weight: 800;
+          }
+        </style>
+      </head>
+      <div class="container bootstrap snippets bootdey">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="blog-comment">
+              <h3 class="text-success">Comments</h3>
+              <hr />
+              <ul class="comments">
+                <li class="clearfix" *ngFor="let comment of comments">
+                  <img
+                    src="https://bootdey.com/img/Content/user_1.jpg"
+                    class="avatar"
+                    alt
+                  />
+                  <div class="post-comments">
+                    <p class="meta">
+                      {{ comment.dateAdded | date:'MMM d, y, h:m:s' }} <a href="#">{{ comment.username }}</a> says :
+                    </p>
+                    <p>{{ comment.comment }}</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  <form class="inutcmt" [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <div style="width: 60%">
+      <textarea
+        id="comment"
+        rows="5"
+        formControlName="comment"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': errorAdd && commentForm.controls['comment'].invalid }"
+      ></textarea>
+    </div>
+    <div class="d-flex">
+      <div style="margin-right: 1em">
+        <button type="submit" class="btn btn-primary">Send</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-secondary" (click)="commentForm.reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+    </p-sidebar>
+  </div>
   <div class="drag-target"></div>
 </div>
 <!-- END: Body-->

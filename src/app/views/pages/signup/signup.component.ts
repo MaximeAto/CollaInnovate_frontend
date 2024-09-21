@@ -56,6 +56,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.formulaire = this.formBuilder.group(
       {
+        username: ['', [Validators.required, Validators.minLength(3)]],
         fullname: ['', [Validators.required, Validators.minLength(3)]],
         email: [
           '',
@@ -117,6 +118,7 @@ export class SignupComponent implements OnInit {
   signup() {
     this.bigginLoad = true
     if (this.formulaire.valid) {
+      const username = this.formulaire.get('username')?.value;
       const fullname = this.formulaire.get('fullname')?.value;
       const email = this.formulaire.get('email')?.value;
       const phone_number = this.formulaire.get('phone_number')?.value;
@@ -132,6 +134,7 @@ export class SignupComponent implements OnInit {
       }
 
       const formData = new FormData();
+      formData.append('username', username);
       formData.append('full_name', fullname);
       formData.append('email', email);
       formData.append('phone_number', phone_number);
@@ -146,6 +149,7 @@ export class SignupComponent implements OnInit {
           this.bigginLoad = false;
           console.log(response.token, response.ping );
           localStorage.setItem("email",response.email)
+          localStorage.setItem("username",response.username)
           this.router.navigate(['/'+ "confirmmail"]);
         },
         (error) => {
